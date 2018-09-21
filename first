@@ -1,0 +1,38 @@
+#!/bin/bash
+
+# chkconfig: 2345 20 80
+# description: Description comes here....
+
+# Source function library. para uso das funções da lib
+. /etc/init.d/functions
+#comandos para serem executados
+start() {
+    /usr/bin/php -f /home/services/service/startService.php
+}
+
+stop() {
+     # code to stop app comes here
+    # example: killproc program_name mata o processo que está rodando o seguinte comando
+    sed -i 's/^/kill /'  sed -i 's/^/kill /' /home/services/service/startService.php
+}
+
+case "$1" in
+    start)
+       start
+       ;;
+    stop)
+       stop
+       ;;
+    restart)
+       stop
+       start
+       ;;
+    status)
+       # code to check status of app comes here
+       # example: status program_name
+       ;;
+    *)
+       echo "Usage: $0 {start|stop|status|restart}"
+esac
+
+exit 0
