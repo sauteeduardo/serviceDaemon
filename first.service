@@ -1,0 +1,14 @@
+[Unit]
+Description=FirstService
+
+[Service]
+#cria o id do processo
+PIDFile=/var/run/first.pid
+#executa como o php ( e com a diretiva & para rodar em segundo plano sempre) (neste caso será de exemplo o outro repositório)
+ExecStart=/usr/bin/php /home/services/service/startService.php &
+Type=simple
+#ao ser fechado o serviço vai matar o processo
+KillMode=process
+
+[Install]
+WantedBy=multi-user.target
